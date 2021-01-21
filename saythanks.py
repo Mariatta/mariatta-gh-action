@@ -10,7 +10,7 @@ async def main():
             "mariatta",
             oauth_token=os.getenv("GH_AUTH")
         )
-        gh_ref = os.getenv("GH_REF")
+        gh_ref = os.getenv("GITHUB_REF")
         print(gh_ref)
         # response = await gh.post(
         #     f'/repos/{os.getenv("GITHUB_REPOSITORY")}/issues',
