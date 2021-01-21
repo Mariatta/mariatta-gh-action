@@ -1,0 +1,12 @@
+name: "Say thanks to PR"
+author: "Mariatta"
+description: "Just say thanks to newly opened PR"
+branding:
+  icon: "message-circle"
+  color: "blue"
+
+runs:
+  using: "composite"
+  steps:
+  - run: python saythanks.py
+    shell: bash
