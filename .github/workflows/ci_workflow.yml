@@ -27,6 +27,6 @@ jobs:
     - name: Say thanks for PR
       env:
         GH_AUTH: ${{ secrets.GITHUB_TOKEN }}
-        GH_WEBHOOK_EVENT: ${{ github.event }}
+#        GH_WEBHOOK_EVENT: ${{ github.event }}
       uses: ./.github/actions/comment-on-pr
 

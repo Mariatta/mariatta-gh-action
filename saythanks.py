@@ -2,7 +2,7 @@ import asyncio
 import os
 import aiohttp
 from gidgethub.aiohttp import GitHubAPI
-
+import json
 async def main():
     async with aiohttp.ClientSession() as session:
         gh = GitHubAPI(
@@ -13,8 +13,10 @@ async def main():
         gh_ref = os.getenv("GITHUB_REF")
         print(gh_ref)
 
-        payload = os.getenv("GH_WEBHOOK_EVENT")
-        print(payload)
+        payload_file = os.getenv("GITHUB_EVENT_PATH")
+        with open(payload_file) as json_file:
+            payload = json.load(json_file)
+            print(payload)
         # response = await gh.post(
         #     f'/repos/{os.getenv("GITHUB_REPOSITORY")}/issues',
         #     data={
