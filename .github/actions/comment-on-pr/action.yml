@@ -1,0 +1,16 @@
+name: "Mariatta's GH Action"
+author: "Mariatta"
+description: "say thanks to PR"
+branding:
+  icon: "message-circle"
+  color: "blue"
+
+inputs:
+  repo_name:
+    description: "The repo to pull data from"
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - run: python saythanks.py
+    shell: bash
