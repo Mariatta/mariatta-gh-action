@@ -2,7 +2,7 @@ import asyncio
 import os
 import aiohttp
 from gidgethub.aiohttp import GitHubAPI
-import json
+
 async def main():
     async with aiohttp.ClientSession() as session:
         gh = GitHubAPI(
@@ -12,19 +12,15 @@ async def main():
         )
         gh_ref = os.getenv("GITHUB_REF")
         print(gh_ref)
-
-        payload_file = os.getenv("GITHUB_EVENT_PATH")
-        with open(payload_file) as json_file:
-            payload = json.load(json_file)
-            print(payload)
-        print(f"{os.getenv('GH_PR_NUM')=}")
-        pr_number_from_payload = payload["pull_request"]["number"]
+        pr_number = os.getenv('GH_PR_NUM')
         response = await gh.post(
-            f'/repos/{os.getenv("GITHUB_REPOSITORY")}/issues/{pr_number_from_payload}',
+            f'/repos/{os.getenv("GITHUB_REPOSITORY")}/issues/{pr_number}/comments',
             data={
                 'body': 'Thanks for the PR!',
             }
         )
+
+
         # print(f"Issue created at {response['html_url']}")
         # issue_url = response["url"]
         # response = await gh.patch(issue_url, data={"state": "closed"})
