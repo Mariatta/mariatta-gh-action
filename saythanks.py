@@ -12,6 +12,9 @@ async def main():
         )
         gh_ref = os.getenv("GITHUB_REF")
         print(gh_ref)
+
+        payload = os.getenv("GH_WEBHOOK_EVENT")
+        print(payload)
         # response = await gh.post(
         #     f'/repos/{os.getenv("GITHUB_REPOSITORY")}/issues',
         #     data={

@@ -2,7 +2,7 @@ name: CI workflow
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
 
 jobs:
   build:
@@ -27,5 +27,6 @@ jobs:
     - name: Say thanks for PR
       env:
         GH_AUTH: ${{ secrets.GITHUB_TOKEN }}
+        GH_WEBHOOK_EVENT: ${{ github.event }}
       uses: ./.github/actions/comment-on-pr
 
